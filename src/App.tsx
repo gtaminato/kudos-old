@@ -1,37 +1,29 @@
 import React from 'react';
-import firebase from 'firebase';
-import firebaseApp from './init-firebase';
-import logo from './logo.svg';
-import './App.css';
+
+import LoginPage from './pages/login';
+import HomePage from './pages/home';
+
+import './App.scss';
 
 class App extends React.Component {
-  componentDidMount() {
-    var provider = new firebase.auth.GoogleAuthProvider();
+  state = {
+    isLoggedIn: false
+  };
 
-    firebaseApp.auth().signInWithPopup(provider).then(function(result) {
-      console.info(result);
-    }).catch(function(error) {
-      console.info(error);
+  handleLogin = () => {
+    console.info('login');
+
+    this.setState({
+      isLoggedIn: true
     });
-  }
+  };
 
   render() {
+    const { isLoggedIn } = this.state;
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        { isLoggedIn ? <HomePage /> : <LoginPage onLoggedIn={this.handleLogin} /> }
       </div>
     );
   }
