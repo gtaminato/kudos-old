@@ -1,32 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import LoginPage from './pages/login';
 import HomePage from './pages/home';
 
 import './App.scss';
 
-class App extends React.Component {
-  state = {
-    isLoggedIn: false
-  };
+const App = () => {
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
-  handleLogin = () => {
+  const handleLogin = () => {
     console.info('login');
 
-    this.setState({
-      isLoggedIn: true
-    });
+    setIsLoggedIn(true);
   };
 
-  render() {
-    const { isLoggedIn } = this.state;
-
-    return (
-      <div className="App">
-        { isLoggedIn ? <HomePage /> : <LoginPage onLoggedIn={this.handleLogin} /> }
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      { isLoggedIn ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> }
+    </div>
+  );
 }
 
 export default App;
