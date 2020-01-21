@@ -1,22 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 
 import LoginPage from './pages/login';
 import HomePage from './pages/home';
 
+import User from 'models/user';
+
 import './App.scss';
+import './base.scss';
+
+export const AuthContext = createContext(undefined);
 
 const App = () => {
-  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const [ user, setUser ] = useState();
 
-  const handleLogin = () => {
-    console.info('login');
-
-    setIsLoggedIn(true);
+  const handleLogin = (user: User) => {
+    setUser(user);
   };
 
   return (
     <div className="App">
-      { isLoggedIn ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> }
+      <AuthContext.Provider value={user}>
+        { !!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> }
+      </AuthContext.Provider>
     </div>
   );
 }
