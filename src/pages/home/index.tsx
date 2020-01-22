@@ -2,9 +2,7 @@ import React, { FC } from 'react';
 import User from 'models/user';
 import { withUser } from 'auth/user';
 
-interface HomePageProps { user: User }
-
-const HomePage: FC<HomePageProps> = ({ user }) => {
+const HomePage: FC<{ user: User }> = ({ user }) => {
   return (
     <div className="HomePage">
       {JSON.stringify(user)}
