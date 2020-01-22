@@ -1,11 +1,11 @@
 export default class User {
-  private _id: string;
-  private _firstName: string;
-  private _displayName: string;
-  private _email: string;
-  private _profilePicture: string;
-  private _idToken: string;
-  private _accessToken: string;
+  private id: string;
+  private firstName: string;
+  private displayName: string;
+  private email: string;
+  private profilePicture: string;
+  private idToken: string;
+  private accessToken: string;
 
   constructor(
     id: string,
@@ -16,12 +16,12 @@ export default class User {
     idToken: string,
     accessToken: string,
   ) {
-		this._id = id;
-		this._firstName = firstName;
-		this._displayName = displayName;
-		this._email = email;
-		this._profilePicture = profilePicture;
-		this._idToken = idToken;
-		this._accessToken = accessToken;
+		this.id = id;
+		this.firstName = firstName;
+		this.displayName = displayName;
+		this.email = email;
+		this.profilePicture = profilePicture;
+		this.idToken = idToken;
+		this.accessToken = accessToken;
   }
 }
