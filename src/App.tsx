@@ -2,6 +2,7 @@ import React, { useState, createContext } from 'react';
 
 import LoginPage from './pages/login';
 import HomePage from './pages/home';
+import CompanyPage from './pages/company';
 
 import User from 'models/user';
 
@@ -20,7 +21,8 @@ const App = () => {
   return (
     <div className="App">
       <AuthContext.Provider value={user}>
-        { !!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> }
+        {/* { !!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> } */}
+        <CompanyPage />
       </AuthContext.Provider>
     </div>
   );
