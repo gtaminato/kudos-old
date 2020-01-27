@@ -21,8 +21,8 @@ const App = () => {
   return (
     <div className="App">
       <AuthContext.Provider value={user}>
-        {/* { !!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> } */}
-        <CompanyPage />
+        { !!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} /> }
+        { user && <CompanyPage user={user} /> }
       </AuthContext.Provider>
     </div>
   );
