@@ -1,0 +1,28 @@
+.SideMenu {
+  &__team {
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  &__team-logo-wrapper {
+    width: 80%;
+    border-radius: 50%;
+    border: 1px solid white;
+    overflow: hidden;
+    height: 20rem;
+    background-color: white;
+  }
+
+  &__team-logo {
+    width: 20rem;
+    height: 20rem;
+  }
+
+  &__team-name {
+    color: white;
+    margin-top: 2rem;
+  }
+}
