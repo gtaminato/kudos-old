@@ -8,29 +8,29 @@ import SideMenu from 'components/side-menu';
 import Copyright from 'components/copyright';
 
 import './styles.scss';
+import Header from 'components/header';
 
 const HomePage: FC<{ user: User }> = ({ user }) => {
-  const { Header, Footer, Sider, Content } = Layout;
+  const { Header: HeaderLayout, Footer, Sider, Content } = Layout;
 
   return (
     <div className="HomePage">
-      <Layout>
+      <Layout style={{ height: "100%" }}>
         <Sider>
           <SideMenu />
         </Sider>
         <Layout>
-          <Header>
-
-          </Header>
+          <HeaderLayout>
+            <Header />
+          </HeaderLayout>
           <Content>
-
+            {JSON.stringify(user)}
           </Content>
           <Footer>
             <Copyright />
           </Footer>
         </Layout>
       </Layout>
-      {JSON.stringify(user)}
     </div>
   );
 }
