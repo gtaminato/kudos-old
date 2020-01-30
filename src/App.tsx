@@ -29,7 +29,7 @@ const App = () => {
     <div className="App">
       <AuthContext.Provider value={user}>
         { isLoading
-          ? <ClipLoader color={"#3E3E3E"} />
+          ? <div className="App__loader"><ClipLoader color={"#3E3E3E"} /></div>
           : (!!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} />) }
       </AuthContext.Provider>
     </div>
