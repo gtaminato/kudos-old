@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import firebase from 'firebase';
-import firebaseApp from '../../init-firebase';
+import firebaseApp, { db } from '../../init-firebase';
 import GoogleButton from 'react-google-button';
 
 import './styles.scss';
@@ -8,6 +8,23 @@ import './styles.scss';
 const LoginPage: FC<{
   onLoggedIn: (user: firebase.User | null) => void
 }> = ({ onLoggedIn }) => {
+  const getTeams = (userId: string | undefined) => {
+    if (!userId) return [];
+
+    const teams = db.collection('teams').where('members', 'array-contains', userId)
+      .get()
+      .then((response) => {
+        console.info('response', response);
+      })
+      .catch((error) => {
+        console.info('error', error);
+      });
+
+    console.info('teams', teams);
+
+    return teams;
+  };
+
   const handleClick = () => {
 
     firebaseApp
@@ -16,8 +33,11 @@ const LoginPage: FC<{
       .then(() => {
         const firebaseProvider = new firebase.auth.GoogleAuthProvider();
 
-        firebaseApp.auth().signInWithPopup(firebaseProvider).then((result: firebase.auth.UserCredential) => {
-          onLoggedIn(result.user);
+        firebaseApp.auth().signInWithPopup(firebaseProvider).then(async (result: firebase.auth.UserCredential) => {
+          const user = result.user;
+
+          const teams = await getTeams(user?.uid);
+          onLoggedIn(user);
         });
       }).catch((error) => {
         console.info(error);

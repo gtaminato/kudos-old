@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
+import firebase from 'firebase';
 import firebaseApp from 'init-firebase';
 import { ClipLoader } from "react-spinners";
 
@@ -18,6 +19,14 @@ const App = () => {
     setUser(user);
   };
 
+  const handleLogout = () => {
+    firebase.auth().signOut().then(function() {
+      console.info('Successfully logged out.');
+    }).catch(function(error) {
+      console.info('Error on logout: ', error);
+    });
+  };
+
   useEffect(() => {
     firebaseApp.auth().onAuthStateChanged(user => {
       setUser(user);
@@ -30,7 +39,7 @@ const App = () => {
       <AuthContext.Provider value={user}>
         { isLoading
           ? <div className="App__loader"><ClipLoader color={"#3E3E3E"} /></div>
-          : (!!user ? <HomePage /> : <LoginPage onLoggedIn={handleLogin} />) }
+          : (!!user ? <HomePage onLogout={handleLogout} /> : <LoginPage onLoggedIn={handleLogin} />) }
       </AuthContext.Provider>
     </div>
   );

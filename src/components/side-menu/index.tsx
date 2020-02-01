@@ -5,7 +5,8 @@ import './styles.scss'
 
 class SideMenu extends React.Component<{
   picture?: string,
-  name?: string
+  name?: string,
+  onLogout: () => void
 }> {
   state = {
     collapsed: false
@@ -24,6 +25,11 @@ class SideMenu extends React.Component<{
     });
   }
 
+  handleLogout = () => {
+    const { onLogout } = this.props;
+    onLogout();
+  };
+
   render() {
     const { Sider } = Layout;
     const { picture, name } = this.props;
@@ -37,7 +43,7 @@ class SideMenu extends React.Component<{
       >
         <div className="SideMenu__team">
           <div className="SideMenu__team-logo-wrapper">
-            <img className="SideMenu__team-logo" src={picture} />
+            <img className="SideMenu__team-logo" src={picture} alt="iFood" />
           </div>
           <h3 className="SideMenu__team-name">{name}</h3>
         </div>
@@ -50,7 +56,7 @@ class SideMenu extends React.Component<{
             <Icon type="team" />
             <span>Teams</span>
           </Menu.Item>
-          <Menu.Item key="3">
+          <Menu.Item key="3" onClick={this.handleLogout}>
             <Icon type="logout" />
             <span>Logout</span>
           </Menu.Item>
