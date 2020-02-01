@@ -1,8 +1,8 @@
 export default class User {
-  private id: string;
-  private displayName: string;
-  private email: string;
-  private profilePicture: string;
+  id: string;
+  displayName: string;
+  email: string;
+  profilePicture: string;
 
   constructor(
     id: string,
