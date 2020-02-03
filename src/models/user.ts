@@ -1,8 +1,8 @@
 export default class User {
-  id: string;
-  displayName: string;
-  email: string;
-  profilePicture: string;
+  private id: string;
+  private displayName: string;
+  private email: string;
+  private profilePicture: string;
 
   constructor(
     id: string,
@@ -15,4 +15,37 @@ export default class User {
 		this.email = email || '';
 		this.profilePicture = profilePicture || '';
   }
+
+
+    /**
+     * Getter $id
+     * @return {string}
+     */
+	public get $id(): string {
+		return this.id;
+	}
+
+    /**
+     * Getter $displayName
+     * @return {string}
+     */
+	public get $displayName(): string {
+		return this.displayName;
+	}
+
+    /**
+     * Getter $email
+     * @return {string}
+     */
+	public get $email(): string {
+		return this.email;
+	}
+
+    /**
+     * Getter $profilePicture
+     * @return {string}
+     */
+	public get $profilePicture(): string {
+		return this.profilePicture;
+	}
 }

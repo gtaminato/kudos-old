@@ -1,11 +1,11 @@
 import User from './user';
 
 export default class Team {
-  id: string;
-  title: string;
-  description: string;
-  author: User;
-  target: User;
+  private id: string;
+  private title: string;
+  private description: string;
+  private author: User;
+  private target: User;
 
   constructor(
     id: string,

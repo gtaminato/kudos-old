@@ -1,9 +1,9 @@
 import User from './user';
 
 export default class Team {
-  id: string;
-  name: string;
-  members: User[];
+  private id: string;
+  private name: string;
+  private members: User[];
 
   constructor(
     id: string,

@@ -23,7 +23,7 @@ const HomePage: FC<{
   const handleClick = async () => {
     await db.collection('teams').add({
       name: 'Gestor de Pedidos',
-      members: [user.id]
+      members: [user.$id]
     }).then((response) => {
       console.info(response);
     }).catch((error) => {
